@@ -1,14 +1,12 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Literal
+from dataclasses import dataclass
 
+from src.tagged import TaggedUnion
 from src.typings import RuleData
 
 
 @dataclass
-class ExecuteAction:
-    kind: Literal["ExecuteAction"] = field(default="ExecuteAction", init=False)
-
+class ExecuteAction(TaggedUnion):
     def execute(self, data: RuleData):
         print("ExecuteAction")

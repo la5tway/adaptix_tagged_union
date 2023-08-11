@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Literal
+from dataclasses import dataclass
 
+from src.tagged import TaggedUnion
 from src.typings import RuleData
 
 from .base import ValueInputCondition
@@ -15,28 +15,22 @@ class BooleanCondition(ValueInputCondition[bool]):
 
 
 @dataclass
-class TrueCondition(BooleanCondition):
+class TrueCondition(BooleanCondition, TaggedUnion):
     value: bool = True
-    kind: Literal["TrueCondition"] = field(default="TrueCondition", init=False)
 
 
 @dataclass
-class FalseCondition(BooleanCondition):
+class FalseCondition(BooleanCondition, TaggedUnion):
     value: bool = False
-    kind: Literal["FalseCondition"] = field(default="FalseCondition", init=False)
 
 
 @dataclass
-class AnyCondition:
-    kind: Literal["AnyCondition"] = field(default="AnyCondition", init=False)
-
+class AnyCondition(TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return True
 
 
 @dataclass
-class NeitherCondition:
-    kind: Literal["NeitherCondition"] = field(default="NeitherCondition", init=False)
-
+class NeitherCondition(TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return False

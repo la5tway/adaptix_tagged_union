@@ -1,60 +1,44 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Literal
+from dataclasses import dataclass
 
+from src.tagged import TaggedUnion
 from src.typings import RuleData
 
 from .base import T, ValueInputCondition
 
 
 @dataclass
-class EqCondition(ValueInputCondition[T]):
-    kind: Literal["EqCondition"] = field(default="EqCondition", init=False)
-
+class EqCondition(ValueInputCondition[T], TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return self.value == data[self.key]
 
 
 @dataclass
-class NotEqCondition(ValueInputCondition[T]):
-    kind: Literal["NotEqCondition"] = field(default="NotEqCondition", init=False)
-
+class NotEqCondition(ValueInputCondition[T], TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return self.value != data[self.key]
 
 
 @dataclass
-class GreaterCondition(ValueInputCondition[T]):
-    kind: Literal["GreaterCondition"] = field(default="GreaterCondition", init=False)
-
+class GreaterCondition(ValueInputCondition[T], TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return data[self.key] > self.value
 
 
 @dataclass
-class LessCondition(ValueInputCondition[T]):
-    kind: Literal["LessCondition"] = field(default="LessCondition", init=False)
-
+class LessCondition(ValueInputCondition[T], TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return data[self.key] < self.value
 
 
 @dataclass
-class GreaterOrEqualCondition(ValueInputCondition[T]):
-    kind: Literal["GreaterOrEqualCondition"] = field(
-        default="GreaterOrEqualCondition", init=False
-    )
-
+class GreaterOrEqualCondition(ValueInputCondition[T], TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return data[self.key] >= self.value
 
 
 @dataclass
-class LessOrEqualCondition(ValueInputCondition[T]):
-    kind: Literal["LessOrEqualCondition"] = field(
-        default="LessOrEqualCondition", init=False
-    )
-
+class LessOrEqualCondition(ValueInputCondition[T], TaggedUnion):
     def satisfied(self, data: RuleData) -> bool:
         return data[self.key] <= self.value
