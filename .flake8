@@ -1,0 +1,19 @@
+[flake8]
+ignore = E203, E266, W503, E402, E800, B023
+max-line-length = 88
+exclude =
+    # git folder
+    .git,
+    # python cache
+    __pycache__,
+    # pytest cache
+    .pytest_cache,
+    # mypy cache
+    .mypy_cache,
+    # venv folder
+    venv,
+    .venv,
+    # self typing
+    *.pyi,
+    src/_distance_old/*.py,
+    src/inference/stereo/model/*.py,

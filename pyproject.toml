@@ -1,0 +1,59 @@
+[tool.poetry]
+name = ""
+version = "0.1.0"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = ">=3.8.10"
+adaptix = "^3.0.0a4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+
+
+[tool.ruff]
+extend-select = [
+  "AIR",  # Airflow
+  "B",  # flake8-bugbear
+  "BLE",  # flake8-blind-except
+  "C90",  # mccabe
+  "C4",  # flake8-comprehensions
+  "FA",  # flake8-future-annotations
+  "FLY",  # flynt
+  "I",  # isort
+  "ICN",  # flake8-import-conventions
+  "ISC",  # flake8-implicit-str-concat
+  "PERF",  # Perflint
+  "PIE",  # flake8-pie
+  "PYI",  # flake8-pyi
+  "Q",  # flake8-quotes
+  "SIM",  # flake8-simplify
+  "UP",  # pyupgrade
+  "W",  # pycodestyle:Warning
+  "YTT",  # flake8-2020
+  "T20",  # flake8-print
+]
+ignore = [
+  "B023",  # Function definition does not bind loop variable {name}
+  "B905",  # `zip()` without an explicit `strict=` parameter
+  "PERF203",  # try-except within a loop incurs performance overhead
+  "PERF401",  # Use a list comprehension to create a transformed list
+  "UP007",  # Use {to} instead of {from} for type annotation
+  "UP006",  # Use {to} instead of {from} for type annotation
+  "UP024",  # Replace aliased errors with OSError
+  "UP035",  # Import from {target} instead:
+  "UP037",  # Remove quotes from type annotation
+  "UP038",  # Use X | Y in {} call instead of (X, Y)
+  "BLE001",  # Do not catch blind exception: {name}
+  "PIE794",  # Class field {name} is defined multiple times
+  "SIM118",  # Use `key in dict` instead of `key in dict.keys()`
+  "C901",  # {function} is too complex ({complexity} > 10)
+]
+extend-exclude = [
+  ".venv",
+]
